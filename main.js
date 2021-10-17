@@ -130,7 +130,7 @@ while(time < 360) {
         console.log('You can chum the water to catch fish faster. [yes] or [no]');
         const chum = prompt('>').toLowerCase();
         const validate = selectionValidator(chum, 'yes', 'no');
-        if(validate === 'keep') {
+        if(validate === 'add') {
             min = 10;
             max = 60;
             time += 30;
@@ -138,7 +138,7 @@ while(time < 360) {
             console.log('');
             console.log('You chummed the water.');
             console.log('');
-        } if(validate === 'return') {
+        } if(validate === 'deny') {
             console.log('');
             console.log('You did not chum the water.');
             console.log('');
