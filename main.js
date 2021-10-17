@@ -6,6 +6,37 @@ const prompt = require('prompt-sync')({ sigint:true });
 console.log('');
 console.log(chalk.red("We're going fishing! Maximize the value of your fish during the six hours allotted. You have a 10lb weight limit, get at 'em."));
 console.log('');
+
+console.log("_______  _______  _        _______  ") 
+console.log("(  ____ \(  ___  )( (    /|(  ____ \ ")
+console.log("| (    \/| (   ) ||  \  ( || (    \/")
+console.log("| |      | |   | ||   \ | || (__    ")
+console.log("| | ____ | |   | || (\ \) ||  __)   ")
+console.log("| | \_  )| |   | || | \   || (      ")
+console.log("| (___) || (___) || )  \  || (____/\ ")
+console.log("(_______)(_______)|/    )_)(_______/")
+console.log("                                    ")
+console.log(" _______ _________ _______          _________ _        _______") 
+console.log("(  ____ \\__   __/(  ____ \|\     /|\__   __/( (    /|(  ____ \ ")
+console.log("| (    \/   ) (   | (    \/| )   ( |   ) (   |  \  ( || (    \/")
+console.log("| (__       | |   | (_____ | (___) |   | |   |   \ | || |      ")
+console.log("|  __)      | |   (_____  )|  ___  |   | |   | (\ \) || | ____ ")
+console.log("| (         | |         ) || (   ) |   | |   | | \   || | \_  )")
+console.log("| )      ___) (___/\____) || )   ( |___) (___| )  \  || (___) |")
+console.log("|/       \_______/\_______)|/     \|\_______/|/    )_)(_______)")
+                                                               
+
+
+
+
+
+
+
+
+
+
+
+
 console.log('==========================================================');
 console.log('');
 
@@ -20,7 +51,7 @@ let fishing = {
 }
 
 
-//set the conditions of the game
+//set the conditions of time for the game
 
 let timesUp = '';
 let min = 15;
@@ -84,39 +115,12 @@ function selectionValidator(input, a, b){
 
 }
 
-function weightChecker(w1, w2) {
-    let weight1 = fishing.weight - w1;
-    let weight2 = weight1 + w2;
-    if(weight2 > 10) {
-        return false;
-    }else {
-        return true;
-    }
-
-}
-//validOption
-function isValid(w1, w2) {
-    let counter = 0;
-    for(let fish of fishing.fishes) {
-        let temp = fishing.weight - fish.weight;
-        if(temp <= 10) {
-            counter++;
-        }
-    }
-    if(counter > 0) {
-        return true;
-    }else {
-        return false;
-    }
-
-}
-
 //calculating time it takes to catch fish
-
+//using a while loop to loop through the game steps until time is out. 360 is the minutes of playtime.
 while(time < 360) {
 
     time += (Math.ceil(randomNumber(min,max)));
-
+//as soon as we pass 360 the loop breaks
     if(time > 360) {
         timesUp = "You're done."
         break
@@ -219,7 +223,7 @@ while(time < 360) {
 
     }
 }
-
+//endgame results
     console.log('The time is now', chalk.grey('12:00pm'), 'Time is up.');
     if(timesUp.length > 0) {
         console.log(timesUp)
@@ -235,4 +239,18 @@ while(time < 360) {
         console.log(`You also found ${fishing.treasure}.`, `$${fishing.treasure * 1000}`);
         console.log('');
     }
-    cons
+    console.log(`Total weight:` ,chalk.cyan(`${fishing.weight.toFixed(2)} lbs`));
+    console.log(`Total value:` , chalk.greenBright(`$${fishing.value.toFixed(2)}`));
+
+
+
+
+
+ console.log("        /`·.¸          ")
+ console.log("       /¸...¸`:·       ")
+ console.log("  ¸.·´  ¸   `·.¸.·´)   ")
+ console.log(" : © ):´;      ¸  {    ")
+ console.log("  `·.¸ `·  ¸.·´\`·¸)   ")
+ console.log("      `\\´´\¸.·´       ")
+
+ 
