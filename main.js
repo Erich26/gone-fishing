@@ -60,12 +60,12 @@ let chumWater = false;
 let time = 0;
 
 
-//functions to add functionality to the game
+//functions 
 
 function randomNumber(min, max) {
     return Math.random() * (max - min) + min;
 }
-
+//function to add new fish and their stats to the object
 function addFish(weight, fish, price) {
     caughtFish.push({ name : fish,
                weight : weight,
@@ -73,9 +73,9 @@ function addFish(weight, fish, price) {
                fishing.value += Number(price);
                fishing.weight += Number(weight);
 }
-
+//will check size and add a weight class to the name
 function sizeChecker(weight) {
-    if(weight < 1) {
+    if(weight <= 1) {
         return 'Tiny';
     }if( 1 < weight && weight < 2) {
         return 'Small';
@@ -88,7 +88,7 @@ function sizeChecker(weight) {
     }
 
 }
-
+//returns the updated time
 function checkTime(time) {
     let hour = 6;
     let minutes = 0;
@@ -101,7 +101,7 @@ function checkTime(time) {
     let formattedMin = ('0' + minutes).slice(-2);
     return `${formattedHr}:${formattedMin}am`;
 }
-
+//used to validate selections across the game
 function selectionValidator(input, a, b){
     if(input === a) {
         return 'add';
@@ -154,7 +154,7 @@ while(time < 360) {
     if(fishing.weight > 10) {
         break;
     }
-    // catching fish
+    // catching fish and fish available to catch, added in stretch items
     const fish = [{name:'Salmon', price : 9},
                   {name:'Catfish', price : 2},
                   {name:'Trout', price : 5},
@@ -163,15 +163,15 @@ while(time < 360) {
                   {name:'Eel', price : 6.5},
                   {name:'Bluegill', price : 15},
                   {name:'Yellow Perch', price : 2.5},
-                  {name:'Golden Doubloon!', price : 1000},
+                  {name:'Golden Doubloon', price : 1000},
                   {name:'Valueless Boot', price : 0}];
 
-    let weight = Math.round(randomNumber(0,5 * 100) / 100);
+    let weight = Math.round(randomNumber(0,5 * 1000) / 1000);
     let fishIndex = Math.ceil(randomNumber(0.1, fish.length - 1));
     let result = `${(fish[fishIndex].name)}`;
     let fishValue = fish[fishIndex].price;
     let fishCaught = `${sizeChecker(weight)} ${result}`;
-    
+//if statement to define catching boot or doubloon    
     if(fishValue === 0) {
         console.log(`You managed to reel in a ${chalk.red(result)} keep fishing.`);
         console.log('Please enter [c] to continue fishing');
@@ -191,7 +191,7 @@ while(time < 360) {
         } else if(valid === 'deny') {
             console.log('You tossed the gold doubloon back into the water.');
         }
-
+//catching a normal fish and determining size and value
     } else {
         let price = (Math.round((weight * fishValue) * 100) / 100);
 
@@ -203,11 +203,13 @@ while(time < 360) {
         console.log('');
 
         let totalWeight = fishing.weight + weight;
-
+//if statement for any fish that puts you over weight limit
         if(totalWeight > 10) {
             console.log('This fish would put you over 10lbs so you have to release it.');
 
-        } else {
+        } 
+//else statement for keeping fish        
+        else {
             const valid = selectionValidator(input, 'c', 'r');
             if(valid === 'add') {
                 console.log('You chose to keep the fish.');
@@ -236,7 +238,7 @@ while(time < 360) {
     }
     console.log('');
     if(fishing.treasure > 0) {
-        console.log(`You also found ${fishing.treasure}.`, `$${fishing.treasure * 1000}`);
+        console.log(`You also found ${fishing.treasure} Golden Doubloon(s), valued at: `, `$${fishing.treasure * 1000}`);
         console.log('');
     }
     console.log(`Total weight:` ,chalk.cyan(`${fishing.weight.toFixed(2)} lbs`));
@@ -254,3 +256,5 @@ while(time < 360) {
  console.log("      `\\´´\¸.·´       ")
 
  
+
+ //TODO- add in ability to remove fish from the bag.
